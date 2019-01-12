@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hebrew</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('button.button2').click(function() {
+          alert($('img.active').data('transcription'));
+        });
+
+        let n = [Math.floor(Math.random() * 26)];
+        $($('img')[n]).addClass("active");
+
+        $('button.send').click(function() {
+          $('input').val();
+        
+        if ($('img.active').data('transcription') === $('input').val()) {
+            alert('Правильная буква');
+            $('img').removeClass("active");
+            let n = [Math.floor(Math.random() * 26)];
+            $($('img')[n]).addClass("active");
+            $('input').val('');
+        } else {
+            alert('Неправильно');
+        }
+
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <img src="1.png" data-transcription="H">
+    <img src="2.png" data-transcription="Аин">
+    <img src="3.png" data-transcription="Алеф">
+    <img src="4.png" data-transcription="Б">
+    <img src="5.png" data-transcription="В">
+    <img src="6.png" data-transcription="В">
+    <img src="7.png" data-transcription="Г">
+    <img src="8.png" data-transcription="Д">
+    <img src="9.png" data-transcription="З">
+    <img src="10.png" data-transcription="Й">
+    <img src="11.png" data-transcription="К">
+    <img src="12.png" data-transcription="К">
+    <img src="13.png" data-transcription="Л">
+    <img src="14.png" data-transcription="М">
+    <img src="15.png" data-transcription="Н">
+    <img src="16.png" data-transcription="П">
+    <img src="17.png" data-transcription="Р">
+    <img src="18.png" data-transcription="С">
+    <img src="19.png" data-transcription="С">
+    <img src="20.png" data-transcription="Т">
+    <img src="21.png" data-transcription="Т">
+    <img src="22.png" data-transcription="Ф">
+    <img src="23.png" data-transcription="Х">
+    <img src="24.png" data-transcription="Х">
+    <img src="25.png" data-transcription="Ц">
+    <img src="26.png" data-transcription="Ш">
+    <input type="text" name="letters"><br>
+    <button class="send">Ответить</button><br>
+    <button class="button2">Подсказка</button>
+  </body>
+</html>
