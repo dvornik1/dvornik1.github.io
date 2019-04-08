@@ -12,22 +12,21 @@
           alert($('img.active').data('transcription'));
         });
 
-        let n = [Math.floor(Math.random() * ($('img')).length)];
+        let n = [Math.floor(Math.random() * $('img').length)];
         $($('img')[n]).addClass("active");
 
         $('button.send').click(function() {
           $('input').val();
-        
-        if ($('img.active').data('transcription') === $('input').val()) {
-            alert('True');
-            $('img').removeClass("active");
-            let n = [Math.floor(Math.random() * ($('img')).length)];
-            $($('img')[n]).addClass("active");
-            $('input').val('');
-        } else {
-            alert('False');
-        }
-
+	        if ($('img.active').data('transcription') === $('input').val()) {
+	            alert('True');
+	            $('img').removeClass("active");
+	            let n = [Math.floor(Math.random() * $('img').length)];
+	            $($('img')[n]).addClass("active");
+	            $('input').val('');
+	        } else {
+	            alert('False');
+	            $('input').val("");
+	        }
         });
       });
     </script>
