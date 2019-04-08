@@ -8,12 +8,19 @@
 
 html,
 body {
-  height: 100%; }
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  background-color: #404040; }
 
 a {
   text-decoration: none; }
 
 img {
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 20px;
   display: none;
   background: no-repeat center center;
@@ -24,16 +31,18 @@ img {
 }
 
 input {
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 20px;
   height: 50px;
   font-size: 21px;
-  margin-left: 20px;
   text-align: center;
 }
 
 button {
+  margin-left: auto;
+  margin-right: auto;
   height: 50px;
   width: 100px;
-  margin-left: 110px;
   margin-top: 20px;
 }

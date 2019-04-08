@@ -12,20 +12,20 @@
           alert($('img.active').data('transcription'));
         });
 
-        let n = [Math.floor(Math.random() * 26)];
+        let n = [Math.floor(Math.random() * ($('img')).length)];
         $($('img')[n]).addClass("active");
 
         $('button.send').click(function() {
           $('input').val();
         
         if ($('img.active').data('transcription') === $('input').val()) {
-            alert('Правильная буква');
+            alert('True');
             $('img').removeClass("active");
-            let n = [Math.floor(Math.random() * 26)];
+            let n = [Math.floor(Math.random() * ($('img')).length)];
             $($('img')[n]).addClass("active");
             $('input').val('');
         } else {
-            alert('Неправильно');
+            alert('False');
         }
 
         });
@@ -33,7 +33,7 @@
     </script>
   </head>
   <body>
-    <img src="1.png" data-transcription="H">
+    <img src="1.png" data-transcription="Хэ">
     <img src="2.png" data-transcription="Аин">
     <img src="3.png" data-transcription="Алеф">
     <img src="4.png" data-transcription="Б">
@@ -59,8 +59,21 @@
     <img src="24.png" data-transcription="Х">
     <img src="25.png" data-transcription="Ц">
     <img src="26.png" data-transcription="Ш">
+    <img src="27.png" data-transcription="Э">
+    <img src="28.png" data-transcription="Э">
+    <img src="29.png" data-transcription="Э">
+    <img src="30.png" data-transcription="Э">
+    <img src="31.png" data-transcription="А">
+    <img src="32.png" data-transcription="А">
+    <img src="33.png" data-transcription="А">
+    <img src="34.png" data-transcription="И">
+    <img src="35.png" data-transcription="И">
+    <img src="36.png" data-transcription="О">
+    <img src="37.png" data-transcription="О">
+    <img src="38.png" data-transcription="У">
+    <img src="39.png" data-transcription="У">
     <input type="text" name="letters"><br>
-    <button class="send">Ответить</button><br>
-    <button class="button2">Подсказка</button>
+    <button class="send">Confirm</button>
+    <button class="button2">Help</button>
   </body>
 </html>
