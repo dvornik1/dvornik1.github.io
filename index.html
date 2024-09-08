@@ -1,78 +1,101 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Hebrew</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <link rel="stylesheet" href="style.css">
-    <script src="jquery.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        $('button.button2').click(function() {
-          alert($('img.active').data('transcription'));
-        });
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+  <link rel="manifest" href="/manifest.json">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
 
-        let n = [Math.floor(Math.random() * $('img').length)];
-        $($('img')[n]).addClass("active");
+    body {
+      background-color: black;
+    }
 
-        $('button.send').click(function() {
-          $('input').val();
-	        if ($('img.active').data('transcription') === $('input').val()) {
-	            alert('True');
-	            $('img').removeClass("active");
-	            let n = [Math.floor(Math.random() * $('img').length)];
-	            $($('img')[n]).addClass("active");
-	            $('input').val('');
-	        } else {
-	            alert('False');
-	            $('input').val("");
-	        }
-        });
+    img {
+      background-size: contain;
+      width: 100%;
+      height: 100%;
+    }
+
+    #time {
+      font-family: 'SF Pro Display', sans-serif;
+      font-size: 23px;
+      position: absolute;
+      top: 35px;
+      left: 35px;
+      color: white;
+      font-weight: 500;
+      opacity: .8;
+    }
+
+    #datetime {
+      font-family: 'SF Pro Display', sans-serif;
+      font-size: 24px;
+      position: absolute;
+      top: 437px;
+      left: 133px;
+      color: white;
+      text-shadow: 0 0 2px rgb(154 154 154 / 30%);
+      opacity: .79;
+    }
+  </style>
+</head>
+<body>
+  <p id="time"></p>
+  <p id="datetime"></p>
+  <img src="./bg.jpg"/>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((registration) => {
+            console.log('ServiceWorker зарегистрирован:', registration);
+          })
+          .catch((error) => {
+            console.error('Ошибка регистрации ServiceWorker:', error);
+          });
       });
-    </script>
-  </head>
-  <body>
-    <img src="1.png" data-transcription="Хэ">
-    <img src="2.png" data-transcription="Аин">
-    <img src="3.png" data-transcription="Алеф">
-    <img src="4.png" data-transcription="Б">
-    <img src="5.png" data-transcription="В">
-    <img src="6.png" data-transcription="В">
-    <img src="7.png" data-transcription="Г">
-    <img src="8.png" data-transcription="Д">
-    <img src="9.png" data-transcription="З">
-    <img src="10.png" data-transcription="Й">
-    <img src="11.png" data-transcription="К">
-    <img src="12.png" data-transcription="К">
-    <img src="13.png" data-transcription="Л">
-    <img src="14.png" data-transcription="М">
-    <img src="15.png" data-transcription="Н">
-    <img src="16.png" data-transcription="П">
-    <img src="17.png" data-transcription="Р">
-    <img src="18.png" data-transcription="С">
-    <img src="19.png" data-transcription="С">
-    <img src="20.png" data-transcription="Т">
-    <img src="21.png" data-transcription="Т">
-    <img src="22.png" data-transcription="Ф">
-    <img src="23.png" data-transcription="Х">
-    <img src="24.png" data-transcription="Х">
-    <img src="25.png" data-transcription="Ц">
-    <img src="26.png" data-transcription="Ш">
-    <img src="27.png" data-transcription="Э">
-    <img src="28.png" data-transcription="Э">
-    <img src="29.png" data-transcription="Э">
-    <img src="30.png" data-transcription="Э">
-    <img src="31.png" data-transcription="А">
-    <img src="32.png" data-transcription="А">
-    <img src="33.png" data-transcription="А">
-    <img src="34.png" data-transcription="И">
-    <img src="35.png" data-transcription="И">
-    <img src="36.png" data-transcription="О">
-    <img src="37.png" data-transcription="О">
-    <img src="38.png" data-transcription="У">
-    <img src="39.png" data-transcription="У">
-    <input type="text" name="letters"><br>
-    <button class="send">Confirm</button>
-    <button class="button2">Help</button>
-  </body>
+    }
+
+    const currentTime = new Intl.DateTimeFormat('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+    }).format(new Date()).replace(/ AM| PM/, '');
+
+    function formatDateTime() {
+      const date = new Date();
+
+      date.setHours(date.getHours() + 1);
+      date.setMinutes(date.getMinutes() + 30);
+
+      const dateFormatter = new Intl.DateTimeFormat('ru-RU', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+      });
+      const timeFormatter = new Intl.DateTimeFormat('ru-RU', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+      });
+
+      const formattedDate = dateFormatter.format(date);
+      const formattedTime = timeFormatter.format(date);
+
+      return `${formattedDate}  ${formattedTime}.`;
+    }
+
+    const formattedDateTime = formatDateTime();
+
+
+    document.getElementById('datetime').textContent = formattedDateTime;
+    document.getElementById('time').textContent = currentTime;
+  </script>
+</body>
 </html>
