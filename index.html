@@ -46,7 +46,6 @@
   </style>
 </head>
 <body>
-  <p id="time"></p>
   <p id="datetime"></p>
   <img src="./bg.jpg"/>
   <script>
@@ -61,12 +60,6 @@
           });
       });
     }
-
-    const currentTime = new Intl.DateTimeFormat('en-US', {
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true
-    }).format(new Date()).replace(/ AM| PM/, '');
 
     function formatDateTime() {
       const date = new Date();
@@ -93,9 +86,7 @@
 
     const formattedDateTime = formatDateTime();
 
-
     document.getElementById('datetime').textContent = formattedDateTime;
-    document.getElementById('time').textContent = currentTime;
   </script>
 </body>
 </html>
